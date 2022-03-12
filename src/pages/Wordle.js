@@ -1,10 +1,18 @@
 import React from 'react'
+import Footer from '../components/Footer'
+import Header from '../components/Header'
 
 function Wordle() {
     return (
-        <main className="game">
-            Wordle
-        </main>
+        <div>
+            <Header/>
+            <main>
+                <h2 class="text-center">Wordle</h2>
+                
+                
+            </main>
+            <Footer/>
+        </div>
     );
 }
 
