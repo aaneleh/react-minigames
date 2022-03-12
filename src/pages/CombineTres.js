@@ -8,7 +8,7 @@ function CombineTres() {
         <div>
             <Header/>
             <main>
-                <h2 class="text-center">Combine Três</h2>
+                <h2 class="text-center">Combine 3</h2>
                 
             </main>
             <Footer/>
