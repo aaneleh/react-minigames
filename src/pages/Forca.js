@@ -16,7 +16,7 @@ function Forca() {
     const [foiClicada, setFoiClicada] = useState(false);
 
     /* INICIALIZANDO */
-    const inicializarDisplay = () => {
+    const criarTabuleiro = () => {
         const posicaoAleatoria = Math.floor(Math.random() * jsonData.length);
         const palavraAleatoria = jsonData[posicaoAleatoria];
 
@@ -44,7 +44,7 @@ function Forca() {
         console.log("num letras:" + numLetras);
     }
     useEffect(() => {
-        inicializarDisplay() //roda essa função quando é iniciado o programa
+        criarTabuleiro() //roda essa função quando é iniciado o programa
     }, [])
 
 
@@ -177,7 +177,7 @@ function Forca() {
 
                         {/* ULTIMA SEÇÃO */}
                         <div class={terminou ? "visible flex justify-center" : "invisible flex justify-center"}>
-                            <p onClick={inicializarDisplay} class="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-red-400" >Gerar nova palavra</p>
+                            <p onClick={criarTabuleiro} class="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-red-400" >Gerar nova palavra</p>
                         </div>
                     </div>
             </main>
