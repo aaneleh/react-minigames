@@ -1,6 +1,4 @@
-# React Minigames
-![Progresso](https://img.shields.io/badge/progress-20%-red)
-  
+# React Minigames  
 ![Badge last-commit](https://img.shields.io/github/issues/aaneleh/react-minigames)
 ![Badge issues](https://img.shields.io/github/issues/aaneleh/react-minigames)
 [![wakatime](https://wakatime.com/badge/user/63a62ebf-02b8-40ab-b01b-99f672dace05/project/8a882fc3-e5a0-439d-ac07-9b545e01a0b5.svg)](https://wakatime.com/badge/user/63a62ebf-02b8-40ab-b01b-99f672dace05/project/8a882fc3-e5a0-439d-ac07-9b545e01a0b5)
