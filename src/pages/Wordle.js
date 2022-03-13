@@ -9,7 +9,7 @@ function Wordle() {
             <main>
                 <h2 class="text-center">Wordle</h2>
                 
-                
+                {/* https://www.dicio.com.br/palavras-com-5-letras-10/ */}
             </main>
             <Footer/>
         </div>
