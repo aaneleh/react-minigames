@@ -94,7 +94,7 @@ function Forca() {
         <div>
             <Header/>
 
-            <main class="text-center h-main p-4 bg-red-300">
+            <main class="text-center h-main p-4 bg-white">
                 <h2 class="text-black text-3xl">Forca</h2>
                 
                     <div class="mt-8 grid overflow-hidden grid-row-3 justify-center"> 
@@ -126,7 +126,7 @@ function Forca() {
                                 </div>
 
                                 {/* LETRAS CHUTADAS */}
-                                <div class="flex justify-center font-bold text-red-700">
+                                <div class="flex justify-center font-bold text-lime-700">
                                     Letras Erradas: 
                                     {letrasErradas.map((letra, index) => (
                                         <p key={index} class="ml-2">
@@ -141,7 +141,7 @@ function Forca() {
                         {/* SEÇÃO DO MEIO */}
                         <div class="grid grid-row-3 grid-cols-10 gap-1 m-2 border-solid border-2 border-black p-4">
                             { alfabeto.map((letra, index) => (
-                                <p class="cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-red-400"
+                                <p class="cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-lime-300"
                                     key={index}
                                     letra={letra}
                                     onClick={recebeLetra}
@@ -155,10 +155,10 @@ function Forca() {
                         <div class="relative h-24 ">
                             <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                                 <div class={foiClicada ? "visible" : "absolute invisible"}>
-                                    <p class="font-bold text-red-700">Você já tentou essa letra!</p>
+                                    <p class="font-bold text-lime-700">Você já tentou essa letra!</p>
                                 </div>
                                 <div class={terminou && letrasErradas.length > 5 ? "visible" : "absolute invisible"}>
-                                    <div class="font-bold text-red-700">
+                                    <div class="font-bold text-lime-700">
                                         <p> Você perdeu! </p>
                                         <p> A palavra era "
                                             {palavra.map((letra, index) => (
@@ -170,14 +170,14 @@ function Forca() {
                                     </div>
                                 </div>
                                 <div class={terminou && letrasCertas.length === palavra.length ? "visible" : "absolute invisible"}>
-                                    <p class= "font-bold text-red-700">Você ganhou!</p>
+                                    <p class= "font-bold text-lime-700">Você ganhou!</p>
                                 </div>
                             </div>
                         </div>
 
                         {/* ULTIMA SEÇÃO */}
                         <div class={terminou ? "visible flex justify-center" : "invisible flex justify-center"}>
-                            <p onClick={criarTabuleiro} class="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-red-400" >Gerar nova palavra</p>
+                            <p onClick={criarTabuleiro} class="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-lime-400" >Gerar nova palavra</p>
                         </div>
                     </div>
             </main>

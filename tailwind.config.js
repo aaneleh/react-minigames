@@ -5,6 +5,8 @@ module.exports = {
     "./src/pages/Home.js",
     "./src/pages/JogoDaVelha.js",
     "./src/pages/Forca.js",
+    "./src/pages/Wordle.js",
+    "./src/pages/CombineTres.js",
 
     "./src/components/Footer.js",
     "./src/components/Header.js",
