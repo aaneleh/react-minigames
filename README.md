@@ -1,6 +1,6 @@
 # React Minigames  
 ![Badge last-commit](https://img.shields.io/github/last-commit/aaneleh/react-minigames)
-[![wakatime](https://wakatime.com/badge/github/aaneleh/react-minigames.svg)](https://wakatime.com/badge/github/aaneleh/react-minigames)
+![wakatime](https://wakatime.com/badge/user/63a62ebf-02b8-40ab-b01b-99f672dace05/project/8a882fc3-e5a0-439d-ac07-9b545e01a0b5.svg)
 [![Badge twitter](https://img.shields.io/twitter/follow/helena_kurzzz)](https://twitter.com/helena_kurzzz)
 
 
