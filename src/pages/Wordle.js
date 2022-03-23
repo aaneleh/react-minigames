@@ -7,15 +7,17 @@ function Wordle() {
     const alfabeto = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'];
     const [palavra, setPalavra] = useState([]);
 
+    const [chutes, setChutes] = useState([]);
+    const [feedback, setFeedback] = useState([]);
     const [linhaAtual, setlinhaAtual] = useState(0);
 
     const [palavraRuim, setPalavraRuim] = useState(false);
     const [terminou, setTerminou] = useState(false);
-    const [chutes, setChutes] = useState([]);
 
 
     const inicializarTabuleiro = () => {
         setTerminou(false);
+        setlinhaAtual(0);
 
         //SORTEIA A PALAVRA
         const posicaoAleatoria = Math.floor(Math.random() * jsonData.length);
@@ -28,32 +30,38 @@ function Wordle() {
 
         //MONTANDO TABULEIRO
         var chutes = [];
+        var feedback = [];
         for (var i = 0 ; i < 6; i ++){
             chutes.push([' ',' ',' ',' ',' ']);
+            for (var j = 0 ; j < 5; j ++){
+                feedback.push("bg-white");
+            }
         }
         setChutes(chutes);
+        setFeedback(feedback);
     }
     useEffect(() => {
         inicializarTabuleiro();
-        //console.log('PALAVRA', palavra);
     }, [])
     
-
+    
     const clicaLetra = (e) => {
-        setPalavraRuim(false);
-        if(linhaAtual <= 5) {
-            e.preventDefault();
-            var letra = e.target.getAttribute('letra');
-            var colocada = false;
-            for(var i=0; i < 5 && !colocada; i++){
-                if(chutes[linhaAtual][i] === ' '){
-                    chutes[linhaAtual][i] = letra;
-                    colocada = true;
+        if(!terminou){
+            setPalavraRuim(false);
+            if(linhaAtual <= 5) {
+                e.preventDefault();
+                var letra = e.target.getAttribute('letra');
+                var colocada = false;
+                for(var i=0; i < 5 && !colocada; i++){
+                    if(chutes[linhaAtual][i] === ' '){
+                        chutes[linhaAtual][i] = letra;
+                        colocada = true;
+                    }
                 }
+                setChutes([...chutes]);
+            } else {
+                setTerminou(true);
             }
-            setChutes([...chutes]);
-        } else {
-            setTerminou(true);
         }
     }
 
@@ -69,21 +77,45 @@ function Wordle() {
             if(completa === 6){
                 var chute = "";
                 var chutou = false;
+                var certas = 0;
+                //transforma o vetor me uma string
                 for(i = 0; i < chutes[linhaAtual].length; i++){
                     chute += chutes[linhaAtual][i];
                 }
+                //compara com todas as palavras da lista
                 for(i = 0; i < jsonData.length && !chutou; i++){
                     if(chute === jsonData[i]){
-                        console.log('Você chutou');
                         var linha = linhaAtual;
                         linha++;
                         setlinhaAtual(linha);
                         chutou = true;
+                        //feedback
+                        for(var j = 0; j < chutes[linhaAtual].length; j++){
+                            //AMARELO
+                            if(palavra.includes(chutes[linhaAtual][j])){
+                                feedback[linhaAtual*5 + j] = "bg-amber-500";
+                                //VERDE
+                                if(chutes[linhaAtual][j] === palavra[j]){
+                                    feedback[linhaAtual*5 + j] = "bg-green-500";
+                                    certas++;
+                                }
+                            //VERMELHA
+                            } else {
+                                feedback[linhaAtual*5 + j] = "bg-red-500";
+                            }
+                        }
+                        setFeedback([...feedback]);
                     }
                 } 
+                //caso a palavra não esteja na lista
                 if(!chutou){
                     setPalavraRuim(true);
                 }
+                //verifica se ganhou
+                if(certas === 5){
+                    setTerminou(true);
+                }
+                console.log('palavra', palavra);
             }
         } else {
             console.log('O JOGO ACABOU');
@@ -119,21 +151,31 @@ function Wordle() {
 
                         {chutes.map((palavra,index) => (
                             <div key={index} className="flex justify-center" >
-                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                    {palavra[0]}
-                                </p>
-                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                    {palavra[1]}
-                                </p>
-                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                    {palavra[2]}
-                                </p>
-                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                    {palavra[3]}
-                                </p>
-                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                    {palavra[4]}
-                                </p>
+                                <span className={feedback[index*5 + 0]}>
+                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
+                                        {palavra[0]}
+                                    </p>
+                                </span>
+                                <span className={feedback[index*5 + 1]}>
+                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
+                                        {palavra[1]}
+                                    </p>
+                                </span>
+                                <span className={feedback[index*5 + 2]}>
+                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
+                                        {palavra[2]}
+                                    </p>
+                                </span>
+                                <span className={feedback[index*5 + 3]}>
+                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
+                                        {palavra[3]}
+                                    </p>
+                                </span>
+                                <span className={feedback[index*5 + 4]}>
+                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
+                                        {palavra[4]}
+                                    </p>
+                                </span>
                             </div>
                         ))}
                         
@@ -170,7 +212,7 @@ function Wordle() {
 
                 {/* BOTÃO */}
                 <div className={terminou ? "visible flex justify-center m-2" : "invisible flex justify-center m-2"}>
-                    <p onClick={inicializarTabuleiro} className="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-lime-400" >Gerar nova palavra</p>
+                    <p onClick={inicializarTabuleiro} className="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-sky-400" >Gerar nova palavra</p>
                 </div>
 
             </main>
