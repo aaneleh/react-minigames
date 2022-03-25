@@ -6,19 +6,23 @@ import jsonData from '../assets/palavras5letras.json';
 function Wordle() {
     const alfabeto = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'];
     const [palavra, setPalavra] = useState([]);
+    const [string, setString] = useState();
     const [chutes, setChutes] = useState([]);
     const [feedback, setFeedback] = useState([]);
     const [linhaAtual, setlinhaAtual] = useState(0);
     const [palavraRuim, setPalavraRuim] = useState(false);
     const [terminou, setTerminou] = useState(false);
+    const [ganhou, setGanhou] = useState(false);
 
     const inicializarTabuleiro = () => {
         setTerminou(false);
         setlinhaAtual(0);
+        setGanhou(false);
 
         //SORTEIA A PALAVRA
         const posicaoAleatoria = Math.floor(Math.random() * jsonData.length);
         const palavraAleatoria = jsonData[posicaoAleatoria];
+        setString(palavraAleatoria);
         var palavra = [];
         for(var i =0;i < palavraAleatoria.length;i++){
             palavra.push(palavraAleatoria.charAt(i));
@@ -79,6 +83,9 @@ function Wordle() {
                     if(chute === jsonData[i]){
                         var linha = linhaAtual;
                         linha++;
+                        if(linha > 5){
+                            setTerminou(true);
+                        }
                         setlinhaAtual(linha);
                         chutou = true;
                         //FEEDBACK
@@ -106,11 +113,11 @@ function Wordle() {
                 //verifica se ganhou
                 if(certas === 5){
                     setTerminou(true);
+                    setGanhou(true);
+                    setPalavraRuim(false);
                 }
-                console.log('palavra', palavra);
             }
         } else {
-            console.log('O JOGO ACABOU');
             setTerminou(true);
         }
     }
@@ -129,8 +136,6 @@ function Wordle() {
             } else {
                 setTerminou(true);
             }
-        } else {
-            console.log('O JOGO ACABOU');
         }
     }
     useEffect(() => {
@@ -183,7 +188,7 @@ function Wordle() {
 
                 {/* TECLADO */}
                 <div className="border-solid border-2 border-black ">
-                    <div className="grid grid-row-3 grid-cols-10 gap-1 m-2 p-4 font-mono">
+                    <div className="grid grid-row-3 grid-cols-10 gap-1 m-2 p-3 font-mono">
                         { alfabeto.map((letra, index) => (
                             <p className="cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400"
                             key={index}
@@ -194,17 +199,20 @@ function Wordle() {
                             </p>
                         ))}
                     </div>
-                    <div className="p-4">
+                    <div className="p-3">
                         <p onClick={deletaLetra} className="text-center cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400">Deletar</p>
                         <br></br>
                         <p onClick={enviaPalavra} className="text-center cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400">Enviar</p>
                     </div>
                 </div>
 
-                {/* BOTÃO */}
-                <div className={palavraRuim ? "visible flex justify-center m-2" : "invisible flex justify-center m-2"}>
+                {/* AVISOS */}
+                <div className="justify-center m-2">
                     <p className="font-bold text-red-500">
-                        Está palavra não é reconhecida
+                        {ganhou ? "Você ganhou!" : terminou ? "A palavra era " + string : ""}
+                    </p>
+                    <p className="font-bold text-red-500">
+                        {palavraRuim ? "Está palavra não é reconhecida" : ""}
                     </p>
                 </div>
 
