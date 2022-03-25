@@ -6,14 +6,11 @@ import jsonData from '../assets/palavras5letras.json';
 function Wordle() {
     const alfabeto = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'];
     const [palavra, setPalavra] = useState([]);
-
     const [chutes, setChutes] = useState([]);
     const [feedback, setFeedback] = useState([]);
     const [linhaAtual, setlinhaAtual] = useState(0);
-
     const [palavraRuim, setPalavraRuim] = useState(false);
     const [terminou, setTerminou] = useState(false);
-
 
     const inicializarTabuleiro = () => {
         setTerminou(false);
@@ -40,11 +37,6 @@ function Wordle() {
         setChutes(chutes);
         setFeedback(feedback);
     }
-    useEffect(() => {
-        inicializarTabuleiro();
-    }, [])
-    
-    
     const clicaLetra = (e) => {
         if(!terminou){
             setPalavraRuim(false);
@@ -64,9 +56,8 @@ function Wordle() {
             }
         }
     }
-
     const enviaPalavra = () => {
-        if(linhaAtual <= 5) {
+        if(!terminou || linhaAtual <= 5) {
             var array = chutes[linhaAtual];
             var completa = 0;
             for(var i=0; i < 6; i++){
@@ -74,22 +65,23 @@ function Wordle() {
                     completa++
                 }
             }
+            //SE PALAVRA ESTÁ COMPLETA CONTINUA
             if(completa === 6){
                 var chute = "";
                 var chutou = false;
                 var certas = 0;
-                //transforma o vetor me uma string
+                //TRANSFORMA VETOR EM STRING
                 for(i = 0; i < chutes[linhaAtual].length; i++){
                     chute += chutes[linhaAtual][i];
                 }
-                //compara com todas as palavras da lista
+                //VERIFICA LISTA DE PALAVRA
                 for(i = 0; i < jsonData.length && !chutou; i++){
                     if(chute === jsonData[i]){
                         var linha = linhaAtual;
                         linha++;
                         setlinhaAtual(linha);
                         chutou = true;
-                        //feedback
+                        //FEEDBACK
                         for(var j = 0; j < chutes[linhaAtual].length; j++){
                             //AMARELO
                             if(palavra.includes(chutes[linhaAtual][j])){
@@ -122,28 +114,34 @@ function Wordle() {
             setTerminou(true);
         }
     }
-
     const deletaLetra = () => {
-        setPalavraRuim(false);
-        if(linhaAtual <= 5) {
-            var deletada = false;
-            for(var i = chutes[linhaAtual].length-1; i >= 0 && !deletada; i--){
+        if(!terminou){
+            setPalavraRuim(false);
+            if(linhaAtual <= 5) {
+                var deletada = false;
+                for(var i = chutes[linhaAtual].length-1; i >= 0 && !deletada; i--){
                 if(chutes[linhaAtual][i]!== ' '){
                     chutes[linhaAtual][i] = ' ';
                     deletada = true;
                 }
             }
             setChutes([...chutes]);
+            } else {
+                setTerminou(true);
+            }
         } else {
-            setTerminou(true);
+            console.log('O JOGO ACABOU');
         }
     }
-
+    useEffect(() => {
+        inicializarTabuleiro();
+    }, [])
+    
     return (
         <div>
             <Header/>
             <main className="bg-white text-center h-main p-4 ">
-                <h2 className="text-black text-3xl">Wordle</h2>
+                <h2 className="font-bold text-3xl">Wordle</h2>
                 
                 {/* TABULEIRO  */}
                 <div className="flex flex-col font-mono">
@@ -206,7 +204,7 @@ function Wordle() {
                 {/* BOTÃO */}
                 <div className={palavraRuim ? "visible flex justify-center m-2" : "invisible flex justify-center m-2"}>
                     <p className="font-bold text-red-500">
-                        Palavra Ruim
+                        Está palavra não é reconhecida
                     </p>
                 </div>
 

@@ -95,7 +95,7 @@ function Forca() {
             <Header/>
 
             <main class="text-center h-main p-4 bg-white">
-                <h2 class="text-black text-3xl">Forca</h2>
+                <h2 class="font-bold text-3xl">Forca</h2>
                 
                     <div class="mt-8 grid overflow-hidden grid-row-3 justify-center"> 
                         {/* SEÇÃO DE CIMA */}
