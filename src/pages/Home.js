@@ -1,15 +1,10 @@
 import React from 'react'
 import {Link} from "react-router-dom"
-import Footer from '../components/Footer'
-import Header from '../components/Header'
 
 //MAIN
 function Home() {
   return (
-    <div>
-      <Header/>
-
-      <main className="grid grid-cols-[repeat(auto-fit,_minmax(20rem,_2fr))] h-main text-center text-white font-bold bg-black">
+      <div className="grid grid-cols-[repeat(auto-fit,_minmax(20rem,_2fr))] h-main text-center text-white font-bold bg-black">
           <Link className="duration-200 bg-red-600 hover:bg-red-500 " to="/jogoDaVelha">
             Jogo da Velha
           </Link>
@@ -22,10 +17,7 @@ function Home() {
           <Link className="duration-200 bg-pink-600 hover:bg-pink-500" to="/combineTres">
             Combine 3
           </Link>
-      </main>
-
-      <Footer/>
-    </div>
+      </div>
   );
 }
 

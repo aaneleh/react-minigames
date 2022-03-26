@@ -27,7 +27,7 @@ function Header() {
                     </svg>
                 </div>
 
-                <h1 className="font-bold">
+                <h1 className="font-bold text-2xl ">
                     <Link to="/">
                         REACT MINIGAMES
                     </Link>

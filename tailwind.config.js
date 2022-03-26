@@ -1,4 +1,5 @@
 module.exports = {
+  darkMode: 'class',
   content: [
     "./src/index.js",
     
@@ -7,6 +8,7 @@ module.exports = {
     "./src/pages/Forca.js",
     "./src/pages/Wordle.js",
     "./src/pages/CombineTres.js",
+    "./src/pages/Main.js",
 
     "./src/components/Footer.js",
     "./src/components/Header.js",

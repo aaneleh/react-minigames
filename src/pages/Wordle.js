@@ -1,6 +1,4 @@
 import React, {useState, useEffect} from 'react'
-import Footer from '../components/Footer'
-import Header from '../components/Header'
 import jsonData from '../assets/palavras5letras.json';
 
 function Wordle() {
@@ -35,7 +33,7 @@ function Wordle() {
         for (var i = 0 ; i < 6; i ++){
             chutes.push([' ',' ',' ',' ',' ']);
             for (var j = 0 ; j < 5; j ++){
-                feedback.push("bg-white");
+                feedback.push("bg-slate-50 dark:bg-slate-900");
             }
         }
         setChutes(chutes);
@@ -143,86 +141,82 @@ function Wordle() {
     }, [])
     
     return (
-        <div>
-            <Header/>
-            <main className="bg-white text-center h-main p-4 ">
-                <h2 className="font-bold text-3xl">Wordle</h2>
-                
-                {/* TABULEIRO  */}
-                <div className="flex flex-col font-mono">
+        <div className="bg-slate-50 text-black text-center h-main p-4 dark:bg-slate-900 dark:text-white">
+            <h2 className="font-bold text-3xl">Wordle</h2>
+            
+            {/* TABULEIRO  */}
+            <div className="flex flex-col font-mono">
+                <br></br>
+
+                    {chutes.map((palavra,index) => (
+                        <div key={index} className="flex justify-center dark:bg-slate-900" >
+                            <span className={feedback[index*5 + 0]}>
+                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10 dark:border-white">
+                                    {palavra[0]}
+                                </p>
+                            </span>
+                            <span className={feedback[index*5 + 1]}>
+                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10 dark:border-white">
+                                    {palavra[1]}
+                                </p>
+                            </span>
+                            <span className={feedback[index*5 + 2]}>
+                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10 dark:border-white">
+                                    {palavra[2]}
+                                </p>
+                            </span>
+                            <span className={feedback[index*5 + 3]}>
+                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10 dark:border-white">
+                                    {palavra[3]}
+                                </p>
+                            </span>
+                            <span className={feedback[index*5 + 4]}>
+                                <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10 dark:border-white">
+                                    {palavra[4]}
+                                </p>
+                            </span>
+                        </div>
+                    ))}
+                    
+
+                <br></br>
+            </div>
+
+            {/* TECLADO */}
+            <div className="border-solid border-2 border-black dark:border-white">
+                <div className="grid grid-row-3 grid-cols-10 gap-1 m-2 p-3 font-mono">
+                    { alfabeto.map((letra, index) => (
+                        <p className="cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400 dark:border-white"
+                        key={index}
+                        letra={letra}
+                        onClick={clicaLetra}
+                        >
+                            {letra}
+                        </p>
+                    ))}
+                </div>
+                <div className="p-3">
+                    <p onClick={deletaLetra} className="text-center cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400 dark:border-white">Deletar</p>
                     <br></br>
-
-                        {chutes.map((palavra,index) => (
-                            <div key={index} className="flex justify-center" >
-                                <span className={feedback[index*5 + 0]}>
-                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                        {palavra[0]}
-                                    </p>
-                                </span>
-                                <span className={feedback[index*5 + 1]}>
-                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                        {palavra[1]}
-                                    </p>
-                                </span>
-                                <span className={feedback[index*5 + 2]}>
-                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                        {palavra[2]}
-                                    </p>
-                                </span>
-                                <span className={feedback[index*5 + 3]}>
-                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                        {palavra[3]}
-                                    </p>
-                                </span>
-                                <span className={feedback[index*5 + 4]}>
-                                    <p className="flex justify-center items-center border-solid border-2 border-black w-10 h-10">
-                                        {palavra[4]}
-                                    </p>
-                                </span>
-                            </div>
-                        ))}
-                        
-
-                    <br></br>
+                    <p onClick={enviaPalavra} className="text-center cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400 dark:border-white">Enviar</p>
                 </div>
+            </div>
 
-                {/* TECLADO */}
-                <div className="border-solid border-2 border-black ">
-                    <div className="grid grid-row-3 grid-cols-10 gap-1 m-2 p-3 font-mono">
-                        { alfabeto.map((letra, index) => (
-                            <p className="cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400"
-                            key={index}
-                            letra={letra}
-                            onClick={clicaLetra}
-                            >
-                                {letra}
-                            </p>
-                        ))}
-                    </div>
-                    <div className="p-3">
-                        <p onClick={deletaLetra} className="text-center cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400">Deletar</p>
-                        <br></br>
-                        <p onClick={enviaPalavra} className="text-center cursor-pointer border-solid border-2 border-black p-2 duration-100 hover:bg-sky-400">Enviar</p>
-                    </div>
-                </div>
+            {/* AVISOS */}
+            <div className="justify-center m-2">
+                <p className="font-bold text-red-500">
+                    {ganhou ? "Você ganhou!" : terminou ? "A palavra era " + string : ""}
+                </p>
+                <p className="font-bold text-red-500">
+                    {palavraRuim ? "Está palavra não é reconhecida" : ""}
+                </p>
+            </div>
 
-                {/* AVISOS */}
-                <div className="justify-center m-2">
-                    <p className="font-bold text-red-500">
-                        {ganhou ? "Você ganhou!" : terminou ? "A palavra era " + string : ""}
-                    </p>
-                    <p className="font-bold text-red-500">
-                        {palavraRuim ? "Está palavra não é reconhecida" : ""}
-                    </p>
-                </div>
+            {/* BOTÃO */}
+            <div className={terminou ? "visible flex justify-center m-2" : "invisible flex justify-center m-2"}>
+                <p onClick={inicializarTabuleiro} className="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-sky-400 dark:border-white" >Gerar nova palavra</p>
+            </div>
 
-                {/* BOTÃO */}
-                <div className={terminou ? "visible flex justify-center m-2" : "invisible flex justify-center m-2"}>
-                    <p onClick={inicializarTabuleiro} className="p-2 w-32 cursor-pointer text-center border-solid border-2 border-black duration-200 hover:bg-sky-400" >Gerar nova palavra</p>
-                </div>
-
-            </main>
-            <Footer/>
         </div>
     );
 }
