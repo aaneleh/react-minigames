@@ -34,7 +34,6 @@ function Forca() {
         criarTabuleiro() //roda essa função quando é iniciado o programa
     }, [])
 
-
     /* FUNÇÕES PRINCIPAIS */
     /* CHUTA A LETRA */
     const chutaLetra = (chute) => {
@@ -89,21 +88,19 @@ function Forca() {
                         {/* VIDAS */}
                         <div className="relative">
                             <svg width="200" height="270" viewBox="0 0 252 271" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <line y1="269.054" x2="89.897" y2="269.054" stroke="black" strokeWidth="2"/>
-                                <line x1="43.9275" y1="270.054" x2="43.9275" y2="2" stroke="black" strokeWidth="2"/>
-                                <line x1="44.9485" y1="1.00665" x2="206.143" y2="1.00665" stroke="black" strokeWidth="2"/>
-                                <line x1="205.143" y1="48.4206" x2="205.143" y2="2.00664" stroke="black" strokeWidth="2"/>
-                                <line x1="167.394" y1="47.4027" x2="243.358" y2="47.4027" stroke="black" strokeWidth="2"/>
-                                <circle className={letrasErradas.length > 0 ? 'visible' : 'invisible'} cx="205.646" cy="69.8653" r="20.8653" stroke="black" strokeWidth="2"/>
-                                <line className={letrasErradas.length > 1 ? 'visible' : 'invisible'} x1="204.646" y1="175.559" x2="204.646" y2="91.7426" stroke="black" strokeWidth="2"/>
-                                <line className={letrasErradas.length > 2 ? 'visible' : 'invisible'} x1="205.624" y1="97.583" x2="251.225" y2="143.184" stroke="black" strokeWidth="2"/>
-                                <line className={letrasErradas.length > 3 ? 'visible' : 'invisible'} x1="158.293" y1="144.493" x2="205.203" y2="97.583" stroke="black" strokeWidth="2"/>
-                                <line className={letrasErradas.length > 4 ? 'visible' : 'invisible'} x1="205.783" y1="175.047" x2="238.028" y2="230.897" stroke="black" strokeWidth="2"/>
-                                <line className={letrasErradas.length > 5 ? 'visible' : 'invisible'} x1="171.253" y1="232.5" x2="204.423" y2="175.047" stroke="black" strokeWidth="2"/>
+                                <line className="stroke-black dark:stroke-white" y1="269.054" x2="89.897" y2="269.054"strokeWidth="2"/>
+                                <line className="stroke-black dark:stroke-white" x1="43.9275" y1="270.054" x2="43.9275" y2="2" strokeWidth="2"/>
+                                <line className="stroke-black dark:stroke-white" x1="44.9485" y1="1.00665" x2="206.143" y2="1.00665" strokeWidth="2"/>
+                                <line className="stroke-black dark:stroke-white" x1="205.143" y1="48.4206" x2="205.143" y2="2.00664" strokeWidth="2"/>
+                                <line className="stroke-black dark:stroke-white" x1="167.394" y1="47.4027" x2="243.358" y2="47.4027" strokeWidth="2"/>
+                                <circle className={letrasErradas.length > 0 ? 'visible stroke-black dark:stroke-white' : 'invisible'} cx="205.646" cy="69.8653" r="20.8653"  strokeWidth="2"/>
+                                <line   className={letrasErradas.length > 1 ? 'visible stroke-black dark:stroke-white' : 'invisible'} x1="204.646" y1="175.559" x2="204.646" y2="91.7426"strokeWidth="2"/>
+                                <line   className={letrasErradas.length > 2 ? 'visible stroke-black dark:stroke-white' : 'invisible'} x1="205.624" y1="97.583" x2="251.225" y2="143.184" strokeWidth="2"/>
+                                <line   className={letrasErradas.length > 3 ? 'visible stroke-black dark:stroke-white' : 'invisible'} x1="158.293" y1="144.493" x2="205.203" y2="97.583" strokeWidth="2"/>
+                                <line   className={letrasErradas.length > 4 ? 'visible stroke-black dark:stroke-white' : 'invisible'} x1="205.783" y1="175.047" x2="238.028" y2="230.897"strokeWidth="2"/>
+                                <line   className={letrasErradas.length > 5 ? 'visible stroke-black dark:stroke-white' : 'invisible'} x1="171.253" y1="232.5" x2="204.423" y2="175.047"  strokeWidth="2"/>
                             </svg>
-
                         </div>
-
                         
                         <div className="h-64 w-main flex flex-col justify-around">
                             {/* TABULEIROS */}
