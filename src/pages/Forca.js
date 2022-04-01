@@ -3,10 +3,7 @@ import jsonData from '../assets/palavras.json';
 
 function Forca() {
     const alfabeto = ['q','w','e','r','t','y','u','i','o','p','a','s','d','f','g','h','j','k','l','z','x','c','v','b','n','m'];
-
     const [palavra, setPalavra] = useState([]);
-    const [numLetras, setNumLetras] = useState(0);
-
     const [tabuleiro, setTabuleiro] = useState();
     const [letrasErradas, setletrasErradas] = useState([]);
     const [letrasCertas, setletrasCertas] = useState([]);
@@ -19,7 +16,6 @@ function Forca() {
         const palavraAleatoria = jsonData[posicaoAleatoria];
 
         setTerminou(false);
-        setNumLetras(palavraAleatoria.length);
         setletrasErradas([]);
         setletrasCertas([]);
         setPalavra([]);
@@ -33,7 +29,6 @@ function Forca() {
 
         setPalavra(palavra);
         setTabuleiro(tabuleiro); //atribui essa array ao tabuleiro
-        setNumLetras(palavra.length);
     }
     useEffect(() => {
         criarTabuleiro() //roda essa função quando é iniciado o programa

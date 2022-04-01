@@ -37,12 +37,13 @@ function Main() {
         <BrowserRouter>
             <img
                 className="bg-black cursor-pointer h-9 absolute z-50 right-4 top-3"
-                src={modo === "black" ? dark : light}
+                src={modo === "dark" ? light : dark}
                 onClick={ToogleModo}
+                alt={modo === "dark" ? "light mode icon" : "dark mode icon" }
                 >
             </img>
 
-            <div class={modo}>
+            <div className={modo}>
                 <div className="relative">
                     <Header/>
 

@@ -30,7 +30,7 @@ function Wordle() {
         //MONTANDO TABULEIRO
         var chutes = [];
         var feedback = [];
-        for (var i = 0 ; i < 6; i ++){
+        for (i = 0 ; i < 6; i ++){
             chutes.push([' ',' ',' ',' ',' ']);
             for (var j = 0 ; j < 5; j ++){
                 feedback.push("bg-slate-50 dark:bg-slate-900");
@@ -72,13 +72,17 @@ function Wordle() {
                 var chute = "";
                 var chutou = false;
                 var certas = 0;
+                var copiaChute = [];
                 //TRANSFORMA VETOR EM STRING
                 for(i = 0; i < chutes[linhaAtual].length; i++){
                     chute += chutes[linhaAtual][i];
+                    copiaChute.push(chutes[linhaAtual][i]);
                 }
                 //VERIFICA LISTA DE PALAVRA
                 for(i = 0; i < jsonData.length && !chutou; i++){
                     if(chute === jsonData[i]){
+                        console.log(palavra);
+
                         var linha = linhaAtual;
                         linha++;
                         if(linha > 5){
@@ -86,21 +90,31 @@ function Wordle() {
                         }
                         setlinhaAtual(linha);
                         chutou = true;
-                        //FEEDBACK
-                        for(var j = 0; j < chutes[linhaAtual].length; j++){
-                            //AMARELO
-                            if(palavra.includes(chutes[linhaAtual][j])){
-                                feedback[linhaAtual*5 + j] = "bg-amber-500";
-                                //VERDE
-                                if(chutes[linhaAtual][j] === palavra[j]){
-                                    feedback[linhaAtual*5 + j] = "bg-green-500";
-                                    certas++;
-                                }
-                            //VERMELHA
-                            } else {
-                                feedback[linhaAtual*5 + j] = "bg-red-500";
+                        
+                        console.log("1: "+chute);
+                        var letra;
+                        //FEEDBACK vermelho e verde
+                        for(var j = 0; j < 5; j++){
+                            feedback[linhaAtual*5 + j] = "bg-red-500"; 
+                            if(chute.charAt(j) === palavra[j]){
+                                feedback[linhaAtual*5 + j] = "bg-green-500";
+                                letra = chute.charAt(j);
+                                chute = chute.replace(letra, " ");
+                                certas++;
                             }
                         }
+                        console.log("2: "+chute);
+
+                        //FEEDBACK amarelo
+                        for(j = 0; j < 5; j++){
+                            if(palavra.includes(chute.charAt(j) ) ) {                                
+                                feedback[linhaAtual*5 + j] = "bg-amber-500";
+                                letra = chute.charAt(j);
+                                chute = chute.replace(letra, " ");
+                            }
+                        }
+                        console.log("3: "+chute);
+
                         setFeedback([...feedback]);
                     }
                 } 
