@@ -13,7 +13,7 @@ import Footer from '../components/Footer';
 import Home from './Home'
 import JogoDaVelha from './JogoDaVelha'
 import Forca from './Forca'
-import Wordle from './Wordle'
+import Termo from './Termo'
 import CombineTres from './CombineTres'
 
 const Pagina404 = () => (
@@ -51,7 +51,7 @@ function Main() {
                     <Route path="/" element={<Home />} />
                     <Route path="/jogoDaVelha" element={<JogoDaVelha />} />
                     <Route path="/forca" element={<Forca />} />
-                    <Route path="/wordle" element={<Wordle />} />
+                    <Route path="/termo" element={<Termo />} />
                     <Route path="/combineTres" element={<CombineTres />} />
                     <Route path="*" element={<Pagina404/>}/>
                     </Routes>

@@ -156,7 +156,7 @@ function Wordle() {
     
     return (
         <div className="bg-slate-50 text-black text-center h-main p-4 dark:bg-slate-900 dark:text-white">
-            <h2 className="font-bold text-3xl">Wordle</h2>
+            <h2 className="font-bold text-3xl">Termo</h2>
             
             {/* TABULEIRO  */}
             <div className="flex flex-col font-mono">

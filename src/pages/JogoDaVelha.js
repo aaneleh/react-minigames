@@ -91,32 +91,34 @@ function JogoDaVelha() {
 
     return (
         <div className="flex h-main flex-col justify-evenly items-center text-black bg-slate-50 dark:text-white dark:bg-slate-900">
-            <h2 className="font-bold text-3xl">Jogo da Velha</h2>
+            <h2 className="p-4 font-bold text-3xl">Jogo da Velha</h2>
             
-            {/* JOGADOR ATUAL */}
-            <div className='bg-red-200 p-2 rounded text-bold dark:bg-red-500'>
-                {terminou ? (vencedor === null ? "Deu Velha" : vencedor + " venceu") : "Rodada de " + jogadorAtual}
-            </div>
+            <div className="flex h-main flex-col justify-evenly items-center">
+                {/* JOGADOR ATUAL */}
+                <div className='bg-red-200 p-2 rounded text-bold dark:bg-red-500'>
+                    {terminou ? (vencedor === null ? "Deu Velha" : vencedor + " venceu") : "Rodada de " + jogadorAtual}
+                </div>
 
-            {/* TABULEIRO */}
-            <div className="grid grid-rows-3 grid-cols-3 ">
-                {tabuleiro.map((char,key) => (
-                    <div
-                        className="flex justify-center items-center border-solid border-2 border-black w-20 h-20 cursor-pointer dark:border-white"
-                        key={key}
-                        index={key}
-                        char={char}
-                        onClick={jogar}
-                    >        
-                        {char}
+                {/* TABULEIRO */}
+                <div className="grid grid-rows-3 grid-cols-3 ">
+                    {tabuleiro.map((char,key) => (
+                        <div
+                            className="flex justify-center items-center border-solid border-2 border-black w-20 h-20 cursor-pointer dark:border-white"
+                            key={key}
+                            index={key}
+                            char={char}
+                            onClick={jogar}
+                            >        
+                            {char}
+                        </div>
+                    ))}
+                </div>
+
+                {/* RECOMEÇAR */}
+                <div className={terminou ? "visible pointer" : "invisible"} >
+                    <div className='rounded border-solid border-2 border-black p-2 cursor-pointer duration-200 hover:bg-red-400 dark:border-white' onClick={iniciar}>
+                        Reiniciar Jogo
                     </div>
-                ))}
-            </div>
-
-            {/* RECOMEÇAR */}
-            <div className={terminou ? "visible pointer" : "invisible"} >
-                <div className='rounded border-solid border-2 border-black p-2 cursor-pointer duration-200 hover:bg-red-400 dark:border-white' onClick={iniciar}>
-                    Reiniciar Jogo
                 </div>
             </div>
 

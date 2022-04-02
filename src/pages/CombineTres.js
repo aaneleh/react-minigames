@@ -8,14 +8,11 @@ import Vazio from '../assets/Vazio.png';
 
 
 function CombineTres() {
-
     var posicaoAleatoria;
     const Formas = [Circulo,Diamante,Pentagono,Quadrado,Triangulo];
     const [tabuleiro, setTabuleiro] = useState([]);
-
     const [pecaMovida, setPecaMovida] = useState(null);
     const [pecaDestino, setPecaDestino] = useState(null);
-
 
     //INICIAR
     const iniciar = () => {
@@ -126,27 +123,22 @@ function CombineTres() {
 
     return (
         <div className='bg-slate-50 h-main text-black dark:text-white dark:bg-slate-900'>
-
             <h2 className="p-4 font-bold text-3xl text-center">Combine 3</h2>
-
             <div className="m-16 p-4 flex justify-around">
                 <div className="w-[min(100%,32rem)] grid grid-cols-8 grid-rows-8 gap-1">
                     {tabuleiro.map((src, index) => (
                         <img className="order-solid border-2 border-black rounded dark:border-white" width="50px" key={index}
                             src={src}
                             index={index}
-
                             draggable={true}
                             onDragStart={handlePecaMovida}
                             onDrop={handlePecaDestino}
                             onDragEnd={MoverPeca}
-                            
                             onDragOver={(e) => e.preventDefault()}
                             onDragEnter={(e) => e.preventDefault()}
                             onDragLeave={(e) => e.preventDefault()}
                             >
                         </img>
-                    
                     ))}
                 </div>
             </div>

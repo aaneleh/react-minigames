@@ -1,21 +1,29 @@
 import React from 'react'
 import {Link} from "react-router-dom"
 
+import jogoDaVelha from '../assets/JogoDaVelha.png';
+import Forca from '../assets/Forca.png';
+import Termo from '../assets/Termo.png';
+import CombineTres from '../assets/combineTres.png';
+
 //MAIN
 function Home() {
   return (
-      <div className="grid grid-cols-[repeat(auto-fit,_minmax(20rem,_2fr))] h-main text-center text-white font-bold bg-black">
-          <Link className="duration-200 bg-red-600 hover:bg-red-500 " to="/jogoDaVelha">
-            Jogo da Velha
+      <div className="h-main grid grid-cols-1 grid-rows-4 lg:grid-cols-4 lg:grid-rows-1">
+          <Link className="border-b-2 border-black lg:border-r-2 lg:border-b-0" to="/jogoDaVelha">
+            <img className="w-full h-full object-cover object-top duration-200 hover:brightness-150" src={jogoDaVelha} alt="jogo da velha"></img>  
           </Link>
-          <Link className="duration-200 bg-lime-500 hover:bg-lime-400" to="/forca">
-            Forca
+
+          <Link className="border-b-2 border-black lg:border-r-2 lg:border-b-0" to="/termo">
+            <img className="w-full h-full object-cover object-top duration-200 hover:brightness-150" src={Termo} alt="Termo"></img>  
           </Link>
-          <Link className="duration-200 bg-sky-500 hover:bg-sky-400" to="/wordle">
-            Wordle
+
+          <Link className="border-b-2 border-black lg:border-r-2 lg:border-b-0" to="/combineTres">
+            <img className="w-full h-full object-cover object-top duration-200 hover:brightness-150" src={CombineTres} alt="Combine Tres"></img>  
           </Link>
-          <Link className="duration-200 bg-pink-600 hover:bg-pink-500" to="/combineTres">
-            Combine 3
+
+          <Link className="border-b-2 border-black lg:border-r-2 lg:border-b-0" to="/forca">
+            <img className="w-full h-full object-cover object-top duration-200 hover:brightness-150" src={Forca} alt="Forca"></img>  
           </Link>
       </div>
   );
